@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCPs: The Backbone of Real-Time Systems Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--
+    Infographic Plan:
+    Overall Theme: Understanding MCPs: The Backbone of Real-Time Systems, based on the "Navigating the Data Maze..." report.
+    Language: English.
+    Color Palette: Energetic & Playful (#FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C).
+
+    Sections:
+    1.  Hero Section: Title and brief intro to MCPs.
+    2.  What are MCPs?: Three cards explaining Memory Consistency, Memory Coherency, Multi-Channel Communication.
+    3.  Memory Consistency Deep Dive:
+        -   Spectrum (Strong to Eventual) - Chart.js Bar Chart (conceptual strictness).
+        -   CAP Theorem - Chart.js Donut Chart.
+        -   Key Models Comparison (Latency/Complexity from Table 2) - Chart.js Bar Chart.
+    4.  Memory Coherency Deep Dive:
+        -   Snooping vs. Directory - HTML/Tailwind comparison.
+        -   Comparison (Scalability/Bus Traffic from Table 3) - Chart.js Bar Chart.
+    5.  Multi-Channel Communication Deep Dive:
+        -   Key Mechanisms (RPC, Pub/Sub, Streaming, APIs) - HTML/Tailwind flow diagram.
+    6.  MCPs in Action: Real-Time Systems:
+        -   Polling vs. MCP-enabled Sync (from Table 4) - Chart.js Grouped Bar Chart.
+    7.  Real-World Technologies (from Table 5):
+        -   Key Tech (Firebase, Kafka, WebSockets, MQTT) - Styled Cards.
+    8.  Challenges & Best Practices (from Table 6):
+        -   Key Challenges - Chart.js Radar Chart.
+    9.  Conclusion & Future Outlook:
+        -   Summary text.
+        -   Future Trends - HTML/Tailwind Timeline.
+
+    Constraints Checklist:
+    - Single HTML file: Yes
+    - Tailwind CSS: Yes, via CDN
+    - Chart.js: Yes, via CDN, responsive, maintainAspectRatio: false, label wrapping, tooltip config
+    - Plotly.js: No, Chart.js sufficient.
+    - No Mermaid JS: Confirmed.
+    - No SVG: Confirmed. Graphics via Canvas (Chart.js) or HTML/CSS/Unicode.
+    - Chart Container Styling: Yes, as specified.
+    - Material Design Aesthetics: Yes (cards, shadows).
+    - Color Palette: Yes, "Energetic & Playful".
+    - Inspiration Images Used: Yes, for layout and chart ideas.
+    - Chart Selection Guide Used: Yes.
+    - Output Constraints (DOCTYPE, no extra text, no comments except specified): Yes.
+    - Source Material Integration: Yes, content from "Navigating the Data Maze...".
+    - Contextual Text for Visualizations & Sections: Yes.
+    -->
+    <!--
+    Visualization Choices & Justifications (No SVG, No Mermaid JS):
+
+    1.  MCP Categories Overview (Section: What are MCPs?):
+        -   Data: Definitions of 3 MCP types.
+        -   Goal: Inform, Organize.
+        -   Visualization: 3 HTML/Tailwind styled cards with Unicode icons.
+        -   Justification: Clear, separate visual introduction to each core concept. Canvas not needed for simple text.
+        -   Library/Method: HTML/Tailwind.
+
+    2.  Memory Consistency - Spectrum (Section: Memory Consistency Deep Dive):
+        -   Data: Conceptual strictness of consistency models (Strong, Sequential, Causal, Eventual).
+        -   Goal: Compare.
+        -   Visualization: Chart.js Horizontal Bar Chart.
+        -   Justification: Effectively shows a progression or spectrum.
+        -   Library/Method: Chart.js (Canvas).
+
+    3.  Memory Consistency - CAP Theorem (Section: Memory Consistency Deep Dive):
+        -   Data: CAP (Consistency, Availability, Partition Tolerance).
+        -   Goal: Inform.
+        -   Visualization: Chart.js Donut Chart.
+        -   Justification: Standard way to show parts of a whole, visually representing "pick two".
+        -   Library/Method: Chart.js (Canvas).
+
+    4.  Memory Consistency - Model Comparison (Table 2 data) (Section: Memory Consistency Deep Dive):
+        -   Data: Latency/Complexity for Strong, Sequential, Causal, Eventual models.
+        -   Goal: Compare.
+        -   Visualization: Chart.js Grouped Bar Chart.
+        -   Justification: Good for comparing multiple metrics across categories.
+        -   Library/Method: Chart.js (Canvas).
+
+    5.  Memory Coherency - Snooping vs. Directory (Section: Memory Coherency Deep Dive):
+        -   Data: Comparison of Snooping and Directory-based protocols.
+        -   Goal: Compare, Organize.
+        -   Visualization: Two-column HTML/Tailwind layout with descriptive text and Unicode icons.
+        -   Justification: Clearly presents distinct features side-by-side.
+        -   Library/Method: HTML/Tailwind.
+
+    6.  Memory Coherency - Mechanism Comparison (Table 3 data) (Section: Memory Coherency Deep Dive):
+        -   Data: Scalability/Bus Traffic for Snooping vs. Directory.
+        -   Goal: Compare.
+        -   Visualization: Chart.js Bar Chart.
+        -   Justification: Simple comparison of two mechanisms on two metrics.
+        -   Library/Method: Chart.js (Canvas).
+
+    7.  Multi-Channel Communication - Mechanisms (Section: Multi-Channel Communication Deep Dive):
+        -   Data: RPC, Message Queues, Pub/Sub, Streaming, HTTP/REST APIs.
+        -   Goal: Organize, Show relationships/flow.
+        -   Visualization: HTML/Tailwind based flow diagram (nodes and connecting lines using borders/Unicode).
+        -   Justification: Visualizes connections and types without SVG/Mermaid.
+        -   Library/Method: HTML/Tailwind.
+
+    8.  Polling vs. MCP-Enabled Sync (Table 4 data) (Section: MCPs in Action):
+        -   Data: Latency, Network Efficiency, Server Impact for Polling, WebSockets, etc.
+        -   Goal: Compare.
+        -   Visualization: Chart.js Grouped Bar Chart.
+        -   Justification: Effective for comparing multiple approaches across several metrics.
+        -   Library/Method: Chart.js (Canvas).
+
+    9.  Real-World Technologies (Table 5 data) (Section: Real-World Technologies):
+        -   Data: Firebase, Kafka, MQTT, WebSockets, MCP Standard, Hardware Coherency.
+        -   Goal: Inform, Compare.
+        -   Visualization: Series of HTML/Tailwind styled cards, one for each technology, with key info and Unicode icons.
+        -   Justification: Bubble chart might be too abstract for this data. Cards allow more descriptive text per item.
+        -   Library/Method: HTML/Tailwind.
+
+    10. Challenges & Best Practices (Table 6 data) (Section: Challenges & Best Practices):
+        -   Data: Latency, Consistency, Bandwidth, Security, State Management.
+        -   Goal: Compare (impact/difficulty), Inform.
+        -   Visualization: Chart.js Radar Chart.
+        -   Justification: Good for showing performance/scores across multiple categories for a single entity (MCP challenges).
+        -   Library/Method: Chart.js (Canvas).
+
+    11. Future Trends (Section: Conclusion & Future Outlook):
+        -   Data: Key future trends in MCPs.
+        -   Goal: Change (over time), Inform.
+        -   Visualization: HTML/Tailwind vertical timeline.
+        -   Justification: Standard and clear way to present chronological or progressive information.
+        -   Library/Method: HTML/Tailwind.
+
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in the output.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8; /* Light gray-blue background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px; /* Max height */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .chart-container {
+                height: 350px;
+                max-height: 450px;
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .chart-container {
+                height: 400px;
+                max-height: 500px;
+            }
+        }
+        .section-title {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #073B4C; /* Midnight Green */
+        }
+        .subsection-title {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: #118AB2; /* Blue NCS */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem; /* 24px */
+            margin-bottom: 1.5rem; /* 24px */
+        }
+        .text-coral-red { color: #FF6B6B; }
+        .bg-coral-red { background-color: #FF6B6B; }
+        .text-sunglow-yellow { color: #FFD166; }
+        .bg-sunglow-yellow { background-color: #FFD166; }
+        .text-caribbean-green { color: #06D6A0; }
+        .bg-caribbean-green { background-color: #06D6A0; }
+        .text-blue-ncs { color: #118AB2; }
+        .bg-blue-ncs { background-color: #118AB2; }
+        .text-midnight-green { color: #073B4C; }
+        .bg-midnight-green { background-color: #073B4C; }
+
+        /* Flowchart Styles */
+        .flow-node {
+            border: 2px solid #118AB2; /* Blue NCS */
+            background-color: #E0F7FA; /* Lighter blue */
+            color: #073B4C; /* Midnight Green */
+        }
+        .flow-arrow {
+            font-size: 1.5rem; /* 24px */
+            color: #118AB2; /* Blue NCS */
+        }
+        /* Timeline Styles */
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem; /* Space for the line and dot */
+            border-left: 3px solid #118AB2; /* Blue NCS */
+        }
+        .timeline-item:last-child {
+            border-left: none; /* No line for the last item */
+            padding-left: calc(2.5rem - 1.5px); /* Adjust for dot centering */
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -0.625rem; /* (20px circle width / 2) - (3px line width / 2) */
+            top: 0;
+            height: 1.25rem; /* 20px */
+            width: 1.25rem; /* 20px */
+            border-radius: 50%;
+            background-color: #FF6B6B; /* Coral Red */
+            border: 3px solid white;
+        }
+        .timeline-item:last-child .timeline-dot {
+             left: -0.625rem;
+        }
+         .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: -1.5px; /* Center on the 3px border */
+            top: 0;
+            bottom: -2rem; /* Extend line to next item's padding bottom */
+            width: 3px;
+            background-color: #118AB2; /* Blue NCS */
+        }
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="text-gray-700">
+
+    <header class="bg-midnight-green text-white py-12 sm:py-16 md:py-20 text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Understanding MCPs</h1>
+            <p class="text-xl sm:text-2xl text-sunglow-yellow mb-6">The Backbone of Real-Time Synchronized Systems</p>
+            <p class="text-lg sm:text-xl max-w-3xl mx-auto">
+                Exploring Memory Consistency, Coherency, and Multi-Channel Communication Protocols that power today's intelligent and interactive applications. This infographic digests key insights from the "Navigating the Data Maze" report.
+            </p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="what-are-mcps" class="py-8">
+            <h2 class="section-title text-center">What are MCPs?</h2>
+            <p class="text-center text-lg mb-10 max-w-2xl mx-auto">
+                "MCPs" is an umbrella term for three critical concepts ensuring data integrity and timely communication in complex systems. They are vital for intelligent assistants like LUNA to function effectively in real-time.
+            </p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-3 text-coral-red flex items-center">
+                        <span class="text-3xl mr-3">🧠</span> Memory Consistency
+                    </h3>
+                    <p>Defines rules for the order and visibility of memory operations (reads/writes) across multiple nodes in distributed systems. Ensures all parts of an application operate on a coherent view of data.</p>
+                    <p class="mt-2 text-sm text-gray-500">Example: Ensuring LUNA sees your latest calendar updates, not an old version, to avoid double-booking.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-3 text-caribbean-green flex items-center">
+                        <span class="text-3xl mr-3">🔗</span> Memory Coherency
+                    </h3>
+                    <p>Hardware-level protocols in multi-processor systems ensuring all processor cores have a consistent view of shared memory, especially managing local caches to prevent use of stale data.</p>
+                     <p class="mt-2 text-sm text-gray-500">Example: The "brains" in LUNA's servers all see the same quick notes, making calculations fast and accurate.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-3 text-blue-ncs flex items-center">
+                        <span class="text-3xl mr-3">📡</span> Multi-Channel Communication
+                    </h3>
+                    <p>Strategies and network protocols enabling different software components (AI agents, APIs, databases) to exchange information reliably and efficiently.</p>
+                    <p class="mt-2 text-sm text-gray-500">Example: How LUNA talks to weather services, your bank, or smart home devices to get information or perform actions for you.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="memory-consistency" class="py-8">
+            <h2 class="section-title text-center">Memory Consistency Deep Dive</h2>
+            <p class="text-center text-lg mb-6 max-w-2xl mx-auto">
+                Memory consistency models are crucial in distributed systems, defining how data updates are seen across different nodes. They range from very strict (strong consistency) to more relaxed (eventual consistency), each with trade-offs.
+            </p>
+
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="card">
+                    <h3 class="subsection-title">Consistency Model Spectrum</h3>
+                    <p class="mb-4">This chart illustrates the conceptual spectrum of consistency models, from the strictest to the most relaxed, highlighting the trade-off between data accuracy and system performance/availability.</p>
+                    <div class="chart-container h-[350px] md:h-[400px]">
+                        <canvas id="consistencySpectrumChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">Stronger consistency provides more guarantees but can increase latency, while eventual consistency offers higher availability but may serve stale data temporarily.</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">The CAP Theorem</h3>
+                    <p class="mb-4">A fundamental principle in distributed systems: a system can provide at most two of these three guarantees: Consistency, Availability, and Partition Tolerance. Since partition tolerance is often a must, designers usually choose between C and A.</p>
+                    <div class="chart-container h-[300px] md:h-[350px]">
+                        <canvas id="capTheoremChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">This visualization represents the choice architects face when designing distributed data stores.</p>
+                </div>
+            </div>
+
+            <div class="card mt-8">
+                <h3 class="subsection-title">Key Consistency Models: Performance vs. Complexity</h3>
+                <p class="mb-4">Different consistency models offer varying levels of guarantees, impacting system performance (latency, throughput) and the complexity of implementation and reasoning about the system. This chart compares some key models based on these aspects (conceptual scores).</p>
+                <div class="chart-container h-[400px] md:h-[450px]">
+                    <canvas id="consistencyModelsComparisonChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">For LUNA, critical operations like financial transactions demand strong consistency, while UI preferences might use eventual consistency.</p>
+            </div>
+        </section>
+
+        <section id="memory-coherency" class="py-8">
+            <h2 class="section-title text-center">Memory Coherency Deep Dive</h2>
+            <p class="text-center text-lg mb-6 max-w-2xl mx-auto">
+                At the hardware level, memory coherency protocols ensure that in systems with multiple processors or cores, all processing units see a consistent view of shared memory, primarily by managing their local caches.
+            </p>
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="card">
+                    <h3 class="subsection-title">Snooping vs. Directory-Based Protocols</h3>
+                    <p class="mb-4">Two primary hardware approaches maintain cache coherency:</p>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xl font-semibold text-coral-red mb-1">📡 Snooping-Based</h4>
+                            <p>All cache controllers "snoop" (monitor) a shared bus. When a relevant memory transaction is detected, they update or invalidate their local cache line. Simpler, but bus can be a bottleneck in larger systems.</p>
+                            <p class="mt-1 text-sm text-gray-500">Think of it like everyone listening to a single announcement board.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-caribbean-green mb-1">📖 Directory-Based</h4>
+                            <p>A central directory tracks which caches hold copies of memory blocks. Messages are sent only to relevant caches, reducing traffic. More complex, but scales better.</p>
+                            <p class="mt-1 text-sm text-gray-500">Like a librarian knowing exactly who has checked out which book.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 class="subsection-title">Coherency Mechanisms: Scalability & Traffic</h3>
+                     <p class="mb-4">This chart compares Snooping and Directory-based protocols on their typical scalability and impact on bus/network traffic (conceptual scores).</p>
+                    <div class="chart-container h-[350px] md:h-[400px]">
+                        <canvas id="coherencyMechanismsChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">Efficient coherency is vital for LUNA's AI computations on multi-core servers.</p>
+                </div>
+            </div>
+             <p class="text-center text-md mt-8 max-w-2xl mx-auto">Common coherency protocols like MSI, MESI, MOSI, and MOESI define states (Modified, Exclusive, Shared, Invalid, Owned) for cache lines to manage these interactions.</p>
+        </section>
+
+        <section id="multi-channel-communication" class="py-8">
+            <h2 class="section-title text-center">Multi-Channel Communication Deep Dive</h2>
+            <p class="text-center text-lg mb-6 max-w-2xl mx-auto">
+                Intelligent assistants like LUNA are part of larger distributed systems. They communicate with internal microservices, external APIs, databases, and user interfaces using various protocols.
+            </p>
+            <div class="card">
+                <h3 class="subsection-title text-center">Key Communication Mechanisms</h3>
+                <p class="text-center mb-6">This diagram illustrates common patterns for service interaction.</p>
+                <div class="space-y-8">
+                    <div class="text-center">
+                        <div class="flow-node inline-block p-3 rounded-md shadow text-lg font-semibold">LUNA Core / Agent</div>
+                    </div>
+                    <div class="flex justify-center items-center space-x-4">
+                        <span class="flow-arrow">↙</span>
+                        <span class="flow-arrow">↓</span>
+                        <span class="flow-arrow">↘</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div>
+                            <div class="flow-node p-3 rounded-md shadow mb-2">RPC (e.g., gRPC)</div>
+                            <p class="text-sm">Direct, synchronous calls between LUNA's internal services. Low latency.</p>
+                        </div>
+                        <div>
+                            <div class="flow-node p-3 rounded-md shadow mb-2">Message Queues (e.g., RabbitMQ, MQTT)</div>
+                            <p class="text-sm">Asynchronous tasks, IoT device communication for LUNA.</p>
+                        </div>
+                        <div>
+                            <div class="flow-node p-3 rounded-md shadow mb-2">Pub/Sub (e.g., Kafka)</div>
+                            <p class="text-sm">Event dissemination, data pipelines for LUNA's learning.</p>
+                        </div>
+                    </div>
+                     <div class="flex justify-center items-center space-x-4 mt-4">
+                        <span class="flow-arrow">↙</span>
+                        <span class="flow-arrow">↓</span>
+                        <span class="flow-arrow">↘</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 text-center pt-4">
+                         <div>
+                            <div class="flow-node p-3 rounded-md shadow mb-2">Streaming (e.g., WebSockets)</div>
+                            <p class="text-sm">Real-time UI updates, voice streaming for LUNA.</p>
+                        </div>
+                        <div>
+                            <div class="flow-node p-3 rounded-md shadow mb-2">HTTP/REST APIs</div>
+                            <p class="text-sm">LUNA interacting with external services (weather, e-commerce).</p>
+                        </div>
+                    </div>
+                </div>
+                 <p class="mt-6 text-sm text-gray-600 text-center">LUNA likely uses a mix: WebSockets for UI, gRPC for internal calls, Kafka for event pipelines, and REST for external APIs.</p>
+            </div>
+        </section>
+
+        <section id="mcps-in-action" class="py-8">
+            <h2 class="section-title text-center">MCPs in Action: Real-Time Systems</h2>
+            <p class="text-center text-lg mb-6 max-w-2xl mx-auto">
+                MCPs enable real-time synchronization. This is often achieved through event-driven architectures and streaming protocols, contrasting with older polling methods.
+            </p>
+            <div class="card">
+                <h3 class="subsection-title">Polling vs. MCP-Enabled Synchronization</h3>
+                <p class="mb-4">This chart compares traditional polling methods with modern MCP-enabled synchronization (like WebSockets or Kafka Pub/Sub) across key metrics. Data is conceptual, highlighting relative differences.</p>
+                <div class="chart-container h-[450px] md:h-[500px]">
+                    <canvas id="syncComparisonChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">For LUNA's interactive experience, MCP-enabled sync (e.g., WebSockets) is crucial for low latency and efficiency, far superior to polling.</p>
+            </div>
+        </section>
+
+        <section id="real-world-tech" class="py-8">
+            <h2 class="section-title text-center">Real-World Technologies & MCPs</h2>
+            <p class="text-center text-lg mb-10 max-w-2xl mx-auto">
+                Various technologies implement or rely on MCP principles to deliver real-time, synchronized experiences. Here are a few key examples relevant to systems like LUNA.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card h-full flex flex-col">
+                    <h3 class="text-xl font-semibold mb-2 text-coral-red flex items-center"><span class="text-2xl mr-2">🔥</span> Firebase</h3>
+                    <p class="text-sm mb-1">Real-time NoSQL DBs (Realtime Database, Firestore).</p>
+                    <p class="text-sm font-medium mb-1">MCP Aspect: Eventual consistency (rapid convergence), Pub/Sub for data updates.</p>
+                    <p class="text-xs text-gray-600 flex-grow">Use for LUNA: Syncing state across user devices, user preferences, chat logs.</p>
+                </div>
+                <div class="card h-full flex flex-col">
+                    <h3 class="text-xl font-semibold mb-2 text-caribbean-green flex items-center"><span class="text-2xl mr-2">🔗</span> Apache Kafka</h3>
+                    <p class="text-sm mb-1">Distributed event streaming platform.</p>
+                    <p class="text-sm font-medium mb-1">MCP Aspect: High-throughput Pub/Sub, per-partition ordering.</p>
+                    <p class="text-xs text-gray-600 flex-grow">Use for LUNA: Backend event processing, ingesting external data, inter-service communication.</p>
+                </div>
+                <div class="card h-full flex flex-col">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-ncs flex items-center"><span class="text-2xl mr-2">🔌</span> MQTT</h3>
+                    <p class="text-sm mb-1">Lightweight Pub/Sub protocol for IoT.</p>
+                    <p class="text-sm font-medium mb-1">MCP Aspect: Lightweight Pub/Sub, Quality of Service levels.</p>
+                    <p class="text-xs text-gray-600 flex-grow">Use for LUNA: Interaction with IoT devices (smart home), mobile notifications in unreliable networks.</p>
+                </div>
+                <div class="card h-full flex flex-col">
+                    <h3 class="text-xl font-semibold mb-2 text-sunglow-yellow flex items-center"><span class="text-2xl mr-2">💬</span> WebSockets</h3>
+                    <p class="text-sm mb-1">Persistent, full-duplex web communication.</p>
+                    <p class="text-sm font-medium mb-1">MCP Aspect: Low-latency, bidirectional streaming.</p>
+                    <p class="text-xs text-gray-600 flex-grow">Use for LUNA: Interactive chat UI, streaming responses, real-time user notifications.</p>
+                </div>
+                 <div class="card h-full flex flex-col">
+                    <h3 class="text-xl font-semibold mb-2 text-purple-500 flex items-center"><span class="text-2xl mr-2">🤝</span> MCP Standard</h3>
+                    <p class="text-sm mb-1">Emerging standard for AI agent-tool interaction.</p>
+                    <p class="text-sm font-medium mb-1">MCP Aspect: Standardized RPC-like communication for agent-tool interaction.</p>
+                    <p class="text-xs text-gray-600 flex-grow">Use for LUNA: Simplifying integration with diverse external APIs and services.</p>
+                </div>
+                 <div class="card h-full flex flex-col">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-600 flex items-center"><span class="text-2xl mr-2"⚙️</span> Hardware Coherency</h3>
+                    <p class="text-sm mb-1">Protocols like MESI, SCI in multi-core CPUs.</p>
+                    <p class="text-sm font-medium mb-1">MCP Aspect: Ensures data uniformity across processor caches.</p>
+                    <p class="text-xs text-gray-600 flex-grow">Use for LUNA: Foundation for efficient execution of AI models on servers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenges-best-practices" class="py-8">
+            <h2 class="section-title text-center">Challenges & Best Practices</h2>
+            <p class="text-center text-lg mb-6 max-w-2xl mx-auto">
+                Implementing MCPs for systems like LUNA involves navigating challenges related to latency, consistency, bandwidth, security, and state management.
+            </p>
+            <div class="card">
+                <h3 class="subsection-title">Key Challenge Areas for MCPs</h3>
+                <p class="mb-4">This radar chart visualizes the typical impact or difficulty associated with common challenges in MCP implementation (conceptual scores: 1=Low, 5=High).</p>
+                <div class="chart-container h-[400px] md:h-[450px]">
+                    <canvas id="mcpChallengesChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">Mitigation involves optimized payloads, contextual consistency, data compression, robust security protocols, and careful state management strategies like event sourcing.</p>
+            </div>
+        </section>
+
+        <section id="conclusion-future" class="py-12 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-center">Conclusion & Future Outlook</h2>
+                <p class="text-center text-lg mb-6 max-w-3xl mx-auto">
+                    MCPs are fundamental to modern real-time systems. For intelligent assistants like LUNA, mastering these principles is key to delivering seamless, accurate, and instantaneous user experiences. The field is constantly evolving.
+                </p>
+                <div class="card max-w-4xl mx-auto">
+                    <h3 class="subsection-title text-center mb-6">Future Trends in MCPs</h3>
+                    <div class="relative">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="text-lg font-semibold text-coral-red">Stronger Consistency with Performance</h4>
+                            <p class="text-sm text-gray-600">Research continues into models offering stronger guarantees without significant performance hits, crucial for AI needing both data integrity and speed.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="text-lg font-semibold text-caribbean-green">Standardization in Agent Communication</h4>
+                            <p class="text-sm text-gray-600">Efforts like the Model Context Protocol (MCP) aim to simplify how AI agents interact with external tools, fostering interoperability.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="text-lg font-semibold text-blue-ncs">Hardware-Software Co-design for AI</h4>
+                            <p class="text-sm text-gray-600">Tighter integration between hardware coherency and software infrastructure to optimize server platforms for AI and real-time data.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="text-lg font-semibold text-sunglow-yellow">Advanced Stream Processing</h4>
+                            <p class="text-sm text-gray-600">Real-time stream processing will become more integral, enabling AI agents to learn continuously from live data feeds.</p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="text-lg font-semibold text-purple-500">Adaptive & Context-Aware MCPs</h4>
+                            <p class="text-sm text-gray-600">Future systems might dynamically adjust consistency levels or communication patterns based on context, network conditions, or AI predictions.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center text-md mt-10 max-w-3xl mx-auto">
+                    LUNA's evolution into a truly perceptive and adaptive assistant depends on leveraging these advancements in MCPs for robust, secure, and real-time data synchronization.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 bg-midnight-green text-gray-300 text-sm">
+        <p>Infographic based on "Navigating the Data Maze: A Comprehensive Overview of MCPs".</p>
+        <p>&copy; 2024 MCP Insights. For educational purposes.</p>
+    </footer>
+
+    <script>
+        const energeticPlayfulPalette = {
+            coralRed: '#FF6B6B',
+            sunglowYellow: '#FFD166',
+            caribbeanGreen: '#06D6A0',
+            blueNCS: '#118AB2',
+            midnightGreen: '#073B4C',
+            lightGrayBlue: '#F0F4F8',
+            white: '#FFFFFF'
+        };
+
+        function wrapLabels(label, maxWidth = 16) {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            if (currentLine.trim().length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [label];
+        }
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: energeticPlayfulPalette.midnightGreen,
+                        font: { size: 12 }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { 
+                        color: energeticPlayfulPalette.midnightGreen,
+                        font: { size: 10 },
+                        callback: function(value, index, values) {
+                            const label = this.getLabelForValue(value);
+                            return wrapLabels(label);
+                        }
+                    },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { 
+                        color: energeticPlayfulPalette.midnightGreen,
+                        font: { size: 10 }
+                    },
+                    grid: { color: '#E0E0E0' }
+                }
+            }
+        };
+        
+        const commonHorizontalChartOptions = { // For horizontal bar charts
+            ...commonChartOptions,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    ...commonChartOptions.scales.x,
+                    grid: { color: '#E0E0E0' },
+                     ticks: { 
+                        color: energeticPlayfulPalette.midnightGreen,
+                        font: { size: 10 }
+                    },
+                },
+                y: {
+                    ...commonChartOptions.scales.y,
+                    grid: { display: false },
+                    ticks: { 
+                        color: energeticPlayfulPalette.midnightGreen,
+                        font: { size: 10 },
+                        callback: function(value, index, values) {
+                            const label = this.getLabelForValue(value);
+                            return wrapLabels(label);
+                        }
+                    },
+                }
+            }
+        };
+
+
+        // Chart 1: Consistency Spectrum Chart
+        const consistencySpectrumCtx = document.getElementById('consistencySpectrumChart').getContext('2d');
+        new Chart(consistencySpectrumCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Strong (Linearizable)', 'Sequential', 'Causal', 'Eventual (Session Guarantees)'],
+                datasets: [{
+                    label: 'Conceptual Strictness Level',
+                    data: [10, 8, 6, 4], // Higher is stricter
+                    backgroundColor: [
+                        energeticPlayfulPalette.coralRed,
+                        energeticPlayfulPalette.sunglowYellow,
+                        energeticPlayfulPalette.caribbeanGreen,
+                        energeticPlayfulPalette.blueNCS
+                    ],
+                    borderColor: energeticPlayfulPalette.white,
+                    borderWidth: 2
+                }]
+            },
+            options: { ...commonHorizontalChartOptions, plugins: { ...commonHorizontalChartOptions.plugins, legend: { display: false } } }
+        });
+
+        // Chart 2: CAP Theorem Chart
+        const capTheoremCtx = document.getElementById('capTheoremChart').getContext('2d');
+        new Chart(capTheoremCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Consistency (C)', 'Availability (A)', 'Partition Tolerance (P)'],
+                datasets: [{
+                    label: 'CAP Theorem Components',
+                    data: [33.3, 33.3, 33.3], // Equal parts
+                    backgroundColor: [
+                        energeticPlayfulPalette.coralRed,
+                        energeticPlayfulPalette.caribbeanGreen,
+                        energeticPlayfulPalette.blueNCS
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...commonChartOptions.plugins,
+                    tooltip: { // Simpler tooltip for Donut
+                        callbacks: {
+                            title: function(tooltipItems) { return ''; }, // No title
+                            label: function(tooltipItem) {
+                                return tooltipItem.label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 3: Consistency Models Comparison Chart
+        const consistencyModelsCtx = document.getElementById('consistencyModelsComparisonChart').getContext('2d');
+        new Chart(consistencyModelsCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabels('Strong/ Linearizable'), 
+                    wrapLabels('Sequential Consistency'), 
+                    wrapLabels('Causal Consistency'), 
+                    wrapLabels('Eventual Consistency')
+                ],
+                datasets: [{
+                    label: 'Typical Latency Impact (Higher=More)',
+                    data: [9, 7, 5, 2], // Conceptual scores
+                    backgroundColor: energeticPlayfulPalette.coralRed,
+                }, {
+                    label: 'Implementation Complexity (Higher=More)',
+                    data: [10, 8, 6, 4], // Conceptual scores
+                    backgroundColor: energeticPlayfulPalette.blueNCS,
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        // Chart 4: Coherency Mechanisms Chart
+        const coherencyMechanismsCtx = document.getElementById('coherencyMechanismsChart').getContext('2d');
+        new Chart(coherencyMechanismsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Snooping-Based', 'Directory-Based'],
+                datasets: [{
+                    label: 'Scalability (Higher=Better)',
+                    data: [5, 9], // Conceptual scores
+                    backgroundColor: energeticPlayfulPalette.caribbeanGreen,
+                }, {
+                    label: 'Bus/Network Traffic Impact (Higher=More)',
+                    data: [8, 4], // Conceptual scores
+                    backgroundColor: energeticPlayfulPalette.sunglowYellow,
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        // Chart 5: Sync Comparison Chart
+        const syncComparisonCtx = document.getElementById('syncComparisonChart').getContext('2d');
+        new Chart(syncComparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: [wrapLabels('Short Polling'), wrapLabels('Long Polling'), 'WebSockets', wrapLabels('Message Queues/ Kafka (Pub/Sub)')],
+                datasets: [{
+                    label: 'Typical Latency (Lower=Better)',
+                    data: [8, 6, 2, 4], // Conceptual scores
+                    backgroundColor: energeticPlayfulPalette.coralRed,
+                }, {
+                    label: 'Network Efficiency (Higher=Better)',
+                    data: [2, 4, 9, 7], // Conceptual scores
+                    backgroundColor: energeticPlayfulPalette.caribbeanGreen,
+                }, {
+                    label: 'Server Resource Impact (Lower=Better)',
+                    data: [7, 8, 5, 6], // Conceptual scores
+                    backgroundColor: energeticPlayfulPalette.blueNCS,
+                }]
+            },
+            options: commonChartOptions
+        });
+        
+        // Chart 6: MCP Challenges Chart
+        const mcpChallengesCtx = document.getElementById('mcpChallengesChart').getContext('2d');
+        new Chart(mcpChallengesCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapLabels('Latency Management'), 
+                    wrapLabels('Consistency Guarantees'), 
+                    wrapLabels('Bandwidth Optimization'), 
+                    'Security', 
+                    wrapLabels('State Management (EDA)')
+                ],
+                datasets: [{
+                    label: 'Challenge Impact / Difficulty (Higher=More)',
+                    data: [9, 8, 7, 9, 8], // Conceptual scores 1-10
+                    backgroundColor: 'rgba(255, 107, 107, 0.2)', // Coral Red transparent
+                    borderColor: energeticPlayfulPalette.coralRed,
+                    pointBackgroundColor: energeticPlayfulPalette.coralRed,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: energeticPlayfulPalette.coralRed
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...commonChartOptions.plugins,
+                     tooltip: { // Simpler tooltip for Radar
+                        callbacks: {
+                            title: function(tooltipItems) { return ''; }, // No title
+                            label: function(tooltipItem) {
+                                return `${tooltipItem.chart.data.labels[tooltipItem.dataIndex]}: ${tooltipItem.formattedValue}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: { display: true, color: '#DDD' },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        grid: { color: '#EEE' },
+                        pointLabels: { 
+                            font: { size: 10 }, 
+                            color: energeticPlayfulPalette.midnightGreen,
+                            callback: function(label) {
+                                return wrapLabels(label, 12); // Shorter wrap for radar point labels
+                            }
+                        },
+                        ticks: {
+                            backdropColor: 'rgba(255,255,255,0.75)',
+                            color: energeticPlayfulPalette.blueNCS,
+                            font: {size: 9}
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
